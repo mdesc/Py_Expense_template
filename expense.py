@@ -30,9 +30,25 @@ expense_questions = [
 ]
 
 
+def check_number(userInput):
+    try:
+        # check if is integer
+        val = int(userInput)
+    except ValueError:
+        try:
+            # check if is float
+            val = float(userInput)
+        except ValueError:
+            #error, user's input is not a number
+            raise SystemExit("The given expense 'amount' is not a number (int or float)")
+
+
 def new_expense(*args):
 
     infos = prompt(expense_questions)
+
+    #input validator
+    check_number(infos['amount'])
 
     involedChoices = []
     spender = infos['spender']
@@ -47,7 +63,7 @@ def new_expense(*args):
         else :
             involedChoices.append(dict(zip(['name'], [user])))
 
-    #print("mapped involved users liss : " + str(involedChoices))
+    #print("mapped involved users list : " + str(involedChoices))
 
     involved = prompt(
         {
@@ -58,7 +74,9 @@ def new_expense(*args):
         },
     )
 
-    print(involved)
+    #print(involved)
+    
+    #concat dict to add expense involved users
     infos.update(involved)
 
     # Writing the informations on external file might be a good idea ¯\_(ツ)_/¯
