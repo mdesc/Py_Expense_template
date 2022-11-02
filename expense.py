@@ -72,6 +72,7 @@ def new_expense(*args):
 
 def synthetize():
     
+    #initialize dict with all users names as key, and 0 as value (money balance)
     res = {}
     for user in users:
         res[user] = 0
