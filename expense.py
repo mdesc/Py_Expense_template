@@ -1,5 +1,6 @@
 from PyInquirer import prompt
 import csv
+import ast
 
 users = []
 
@@ -69,4 +70,34 @@ def new_expense(*args):
 
     return True
 
+def synthetize():
+    
+    res = {}
+    for user in users:
+        res[user] = 0
 
+    with open('expense_report.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+
+            total = int(row[0])
+            spender = row[2]
+            involvedAllStr = row[3]
+            involvedAll = ast.literal_eval(involvedAllStr)
+
+            subTotal = total / (len(involvedAll) + 1) 
+
+            #print("total:" + str(total)+ " subTotal: "+ str(subTotal))
+            #print("spender"+ spender)
+
+            res[spender]+= total - subTotal
+            
+            #print("involved users:")
+            
+            for involved in involvedAll:
+                res[involved]-=subTotal
+
+    print("All users balance (negative value mean that the user must refund someone that has a positive value, to balance everybody to 0): \n" + str(res))
+
+
+    return True

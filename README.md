@@ -35,7 +35,7 @@ Creation of new files is recommended. Clean architectures will be rewarded
 
 
 ![Example](exampleExpense.png)
-- [ ] A status report can be accessed from the main menu, synthesizing who owes who. Every user must appear only once in the report, so you must synthesize reimbursements. 
+- [X] A status report can be accessed from the main menu, synthesizing who owes who. Every user must appear only once in the report, so you must synthesize reimbursements. 
 Exemple: 3 Users :
 - User1 owes 34,56€ to User2
 - User2 owes nothing
