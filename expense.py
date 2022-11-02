@@ -98,8 +98,11 @@ def synthetize():
     with open('expense_report.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
+            try:
+                total = int(row[0])
+            except ValueError:
+                total = float(row[0])
 
-            total = int(row[0])
             spender = row[2]
             involvedAllStr = row[3]
             involvedAll = ast.literal_eval(involvedAllStr)
